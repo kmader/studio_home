@@ -1,0 +1,155 @@
+/*-----------------------------------------------------------------------------
+| Variables
+|----------------------------------------------------------------------------*/
+
+:root {
+  /* These need to be root because tabs get attached to the body during dragging. */
+  --theia-private-horizontal-tab-height: 22px;
+  --theia-private-horizontal-tab-active-top-border: 2px;
+  --theia-private-horizontal-tab-scrollbar-rail-height: 7px;
+  --theia-private-horizontal-tab-scrollbar-height: 5px;
+}
+
+/*-----------------------------------------------------------------------------
+| General tab bar style
+|----------------------------------------------------------------------------*/
+
+.p-TabBar {
+  color: var(--theia-ui-font-color1);
+  background: var(--theia-layout-color6);
+  font-size: var(--theia-ui-font-size1);
+}
+
+.p-TabBar[data-orientation='horizontal'] {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  min-height: calc(var(--theia-private-horizontal-tab-height) + var(--theia-border-width) + var(--theia-private-horizontal-tab-scrollbar-rail-height) / 2);
+}
+
+.p-TabBar[data-orientation='horizontal'] .p-TabBar-content {
+  flex: none;
+  align-items: flex-end;
+  z-index: 1;
+}
+
+.p-TabBar[data-orientation='horizontal'] .p-TabBar-tab {
+  flex: none;
+  height: calc(var(--theia-private-horizontal-tab-height) + var(--theia-private-horizontal-tab-scrollbar-rail-height) / 2);
+  min-width: 35px;
+  line-height: var(--theia-private-horizontal-tab-height);
+  padding: 0px 8px;
+  background: var(--theia-layout-color0);
+}
+
+.p-TabBar[data-orientation='horizontal'] .p-TabBar-tab:last-child {
+  border-right: var(--theia-border-width) solid var(--theia-border-color0);
+}
+
+.p-TabBar[data-orientation='horizontal'] .p-TabBar-tab:hover:not(.p-mod-current) {
+  background: var(--theia-layout-color1);
+}
+
+
+/*-----------------------------------------------------------------------------
+| Tabs in the center area (main and bottom)
+|----------------------------------------------------------------------------*/
+
+/* This is a current tab of a tab bar: each tab bar has 1. */
+.p-TabBar.theia-app-centers .p-TabBar-tab.p-mod-current {
+  min-height: calc(var(--theia-private-horizontal-tab-height) + var(--theia-border-width));
+  background: var(--theia-layout-color3);
+  color: var(--theia-ui-font-color0);
+  border-top: var(--theia-border-width) solid var(--theia-layout-color3);
+}
+
+/* This is the main application level active tab: only 1 exists. */
+.p-TabBar.theia-app-centers .p-TabBar-tab.theia-mod-active {
+  border-top-color: var(--theia-accent-color2);
+}
+
+.p-TabBar.theia-app-centers .p-TabBar-tabIcon,
+.p-TabBar.theia-app-centers .p-TabBar-tabLabel,
+.p-TabBar.theia-app-centers .p-TabBar-tabCloseIcon {
+  display: inline-block;
+}
+
+.p-TabBar.theia-app-centers .p-TabBar-tabIcon {
+  width: 15px;
+  line-height: 1.7;
+}
+
+.p-TabBar.theia-app-centers .p-TabBar-tab.p-mod-closable > .p-TabBar-tabCloseIcon {
+  margin-left: 4px;
+  padding-top: 6px;
+  height: 16px;
+  width: 16px;
+  background-image: var(--theia-icon-close);
+  background-size: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.p-TabBar.theia-app-centers .p-TabBar-tab.p-mod-closable.theia-mod-dirty > .p-TabBar-tabCloseIcon {
+  background-size: 10px;
+  background-image: var(--theia-icon-circle);
+}
+
+.p-TabBar.theia-app-centers .p-TabBar-tab > .p-TabBar-tabIcon.no-icon {
+  display: none;
+}
+
+/*-----------------------------------------------------------------------------
+| Perfect scrollbar
+|----------------------------------------------------------------------------*/
+
+.p-TabBar[data-orientation='horizontal'] > .ps__rail-x {
+  height: var(--theia-private-horizontal-tab-scrollbar-rail-height);
+  z-index: 1000;
+}
+
+.p-TabBar[data-orientation='horizontal'] > .ps__rail-x  >.ps__thumb-x {
+  height: var(--theia-private-horizontal-tab-scrollbar-height);
+  bottom: calc((var(--theia-private-horizontal-tab-scrollbar-rail-height) - var(--theia-private-horizontal-tab-scrollbar-height)) / 2);
+}
+
+.p-TabBar[data-orientation='horizontal'] > .ps__rail-x:hover,
+.p-TabBar[data-orientation='horizontal'] > .ps__rail-x:focus {
+  height: var(--theia-private-horizontal-tab-scrollbar-rail-height);
+}
+
+.p-TabBar[data-orientation='horizontal'] > .ps__rail-x:hover > .ps__thumb-x,
+.p-TabBar[data-orientation='horizontal'] > .ps__rail-x:focus > .ps__thumb-x {
+  height: var(--theia-private-horizontal-tab-scrollbar-height);
+  bottom: calc((var(--theia-private-horizontal-tab-scrollbar-rail-height) - var(--theia-private-horizontal-tab-scrollbar-height)) / 2);
+}
+
+
+/*-----------------------------------------------------------------------------
+| Dragged tabs
+|----------------------------------------------------------------------------*/
+
+.p-TabBar-tab.p-mod-drag-image {
+  transform: translateX(-40%) translateY(-58%);
+  opacity: 0.8;
+  min-height: var(--theia-private-horizontal-tab-height);
+  padding: 0px 10px;
+  font-size: var(--theia-ui-font-size1);
+  line-height: var(--theia-private-horizontal-tab-height);
+  color: var(--theia-ui-font-color1);
+  background: var(--theia-layout-color1);
+  border: var(--theia-border-width) solid var(--theia-border-color1);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.p-TabBar-tab.p-mod-drag-image > .p-TabBar-tabIcon,
+.p-TabBar-tab.p-mod-drag-image > .p-TabBar-tabLabel {
+  display: inline-block;
+}
+.p-TabBar-tab.p-mod-drag-image > .p-TabBar-tabIcon.no-icon {
+  display: none;
+}
+
+.p-TabBar-tab.p-mod-drag-image > .p-TabBar-tabIcon {
+  width: 15px;
+  line-height: 1.7;
+}

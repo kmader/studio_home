@@ -1,0 +1,34 @@
+<!--
+    Deep Learning Studio - GUI platform for designing Deep Learning AI without programming
+
+    Copyright (C) 2016-2017 Deep Cognition Labs, Skiva Technologies Inc.
+
+    All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>We're sorry, but something went wrong (500)</title>
+  
+<script src="https://cdn.ravenjs.com/2.3.0/raven.min.js"></script>
+
+{% if request.sentry %}
+  <script>
+  Raven.showReportDialog({
+    eventId: '{{ request.sentry.id }}',
+    // use the public DSN (dont include your secret!)
+    dsn: 'https://6ed1117b1057485c96b7dec2dc7bde21@sentry.io/103444',
+    user: {name: '{{user.username}}', id:'{{user.id}}', email: '{{user.email}}' },
+  });
+  </script>
+{% endif %}
+</head>
+
+<body>
+
+</body>
+</html>

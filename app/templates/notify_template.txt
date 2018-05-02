@@ -1,0 +1,29 @@
+Hi,
+
+Here is an update regarding your computing tasks that are running on Deep Learning Studio:
+
+System uptime: {{uptime}} 
+
+{% if project_name != '' %}
+[1]  {{project_name}} (Studio Project)
+
+Epochs Processed:         {{cur_epoch}} out of {{total_epoch}}
+Validation Accuracy:      {{val_accuracy}}
+Validation Loss:          {{val_loss}}
+Training Accuracy:        {{train_accuracy}}
+Training Loss:            {{train_loss}}
+Best Accuracy:            {{best_accuracy}} on epoch {{best_epoch}}
+
+{% endif %}
+{% if notebooks != '' %}
+[2]  Jupyter Notebooks: {{notebooks}}
+          Status:  Running
+{% endif %}
+
+You can review detailed progress by login to your account (http://app.deepcognition.ai). 
+
+Deep learning Studio automatically stops the instance once it is no longer running any computing task. If you would like to manually shutdown your instance, click on the power button on the top right corner of Deep Learning Studio.
+
+Thanks for using Deep Learning Studio.
+
+Deepcognition.ai Team

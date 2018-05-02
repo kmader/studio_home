@@ -1,0 +1,61 @@
+/*
+ * Copyright (C) 2018 TypeFox and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+.theia-git {
+    color: var(--theia-ui-font-color1);
+}
+
+.theia-git .git-diff-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+}
+
+.theia-git .revision .row-title {
+    width: 35px;
+    display: inline-block;
+}
+
+.theia-git .diff-header {
+    flex-shrink: 0;
+}
+
+.theia-git .header-row {
+    display: flex;
+    flex-direction: row; 
+}
+
+.theia-git .header-value {
+    margin: 9px 0px 5px 5px;
+}
+
+.theia-git .listContainer {
+    overflow-y: auto;
+}
+
+.theia-git .gitItem.diff-file {
+    margin: 1px 0 !important;
+    padding: 0 !important;
+}
+
+.theia-git .gitItem.diff-file:hover {
+    background-color: inherit !important;
+    cursor: inherit !important;
+}
+
+.theia-git .lrBtns {
+    display:flex;
+    align-items: center;
+    margin-right: 2px;
+}
+
+.theia-git .lrBtns span {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+}

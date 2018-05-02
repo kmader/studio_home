@@ -1,0 +1,36 @@
+{
+  "name": "@deepcognition/auth",
+  "version": "0.1.0",
+  "description": "DeepCognition Auth Extension",
+  "dependencies": {
+    "@theia/core": "^0.3.7",
+    "prom-client": "^10.2.0"
+  },
+  "theiaExtensions": [
+    {
+      "backend": "lib/node/auth-backend-module"
+    }
+  ],
+  "keywords": [
+    "theia-extension"
+  ],
+  "license": "Apache-2.0",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "theiaext clean",
+    "build": "theiaext build",
+    "watch": "theiaext watch",
+    "test": "theiaext test",
+    "docs": "theiaext docs"
+  },
+  "devDependencies": {
+    "@theia/ext-scripts": "^0.3.8"
+  },
+  "nyc": {
+    "extends": "../../configs/nyc.json"
+  }
+}

@@ -1,0 +1,42 @@
+/* FIXME when https://github.com/Microsoft/monaco-editor/issues/113#issuecomment-240406949 is fixed */
+.monaco-editor .inputarea {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.monaco-editor {
+    padding-bottom: 5.6px;
+    font-family: monospace !important;
+    font-size: inherit !important;
+}
+
+.monaco-editor, .monaco-editor-background {
+    background: var(--theia-layout-color3);
+}
+
+.monaco-editor .margin {
+    background: var(--theia-layout-color3);
+}
+
+.monaco-keybinding-key {
+    color: var(--theia-ui-font-color1) !important;
+}
+
+/* 
+ * set z-index to 0, so tabs are not above overlay widgets 
+ */
+.p-TabBar.theia-app-centers {
+    z-index: 0;
+}
+
+.quick-open-widget .quick-open-tree .quick-open-entry .quick-open-entry-icon, 
+.vs-dark .quick-open-widget .quick-open-tree .quick-open-entry .quick-open-entry-icon.file-icon {
+    background-image: none;
+    margin-bottom: 4px;
+    margin-right: 0px;
+}
+
+.monaco-tree-row  {
+    padding-right: 11px;
+}

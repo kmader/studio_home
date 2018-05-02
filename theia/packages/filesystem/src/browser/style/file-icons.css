@@ -1,0 +1,22 @@
+/*
+ * Copyright (C) 2017 TypeFox and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+.file-icon {
+    max-height: calc(var(--theia-content-font-size) * 0.8);
+    /*
+    Here, the `line-height` ensures that FontAwesome and `file-icons-js` container has the same height.
+    Ideally, it would be 1 em, but since we set the max height above (and other places too) with 0.8
+    multiplier, we use 0.8 em here too.
+     */
+    line-height: 0.8em;
+}
+
+.file-icon:before {
+    font-size: calc(var(--theia-content-font-size) * 0.8);
+    text-align: center;
+    margin-right: 4px;
+}

@@ -1,0 +1,122 @@
+
+<html>
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		    <link rel="stylesheet" type="text/css" href="http://app.deepcognition.ai/app/assets/css/materialadmin.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <style type="text/css">
+                .form-control:focus {
+                    border-color: inherit;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+                }
+                input[type=file]{
+                    padding-top:10px;
+                    border:0;
+                }
+                #api_url{ white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;}
+            </style>
+            <title>{{name}}-v{{version}}</title>
+    </head>
+    <script>
+        $(document).ready(function() {
+            var url = "/models/" + $('#dls_model_name').val() + "/v" + $('#dls_model_version').val() + "/predict"; // send the form data here.
+            var api_url = document.getElementById("api_url");
+            api_url.innerText = api_url.innerText.replace('HOST_SERVER','"http://'+window.location.host+url +'"')
+            $('form').submit(function (e) {
+                var form = new FormData(this)
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form, 
+                    processData : false,
+                    contentType : false,
+                    enctype: 'multipart/form-data',
+                    success: function (data) {
+                        console.log(data)  // display the returned data in the console.
+
+                        if (data["status"] == "OK") {
+                            if (data["type"] == 'Categorical') {
+                                response = '<p>Prediction:' + data["predictions"] + "</p></b>"
+                                response += '<p>Probability:' + data["probabilities"] + "</p>"
+                                
+                            } else  if (data["type"] == 'Image') {
+                                response = "<img style='max-width:200px' src='/models/file/" + data["base_path"] + "/" + data["predictions"] + "'>" + data["predictions"] + "</img>"
+                            } else if (data["type"] == 'Numpy') {
+                                response = "<a href='/models/file/" + data["base_path"] + "/" + data["predictions"] + "'>" + data["predictions"] + "</a>"
+                            } else {
+                                response = '<p>Prediction:' + data["predictions"] + "</p>"
+                            }
+                        } else {
+                            response = "<p>Error :" + data["message"] + "</p>"
+                        }
+                        document.getElementById("result").style.borderTop='1px solid lightgray';
+                        document.getElementById("sub-btn").disabled = false;
+                        $("#result").html("<div class='card-body'>"+response+"</div>")
+                    }
+                });
+                e.preventDefault(); // block the traditional submission of the form.
+            });
+            // Inject our CSRF token into our AJAX request.
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    $("#result").html("");
+                    document.getElementById("sub-btn").disabled = true;
+                    if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
+                    }
+                }
+            })
+        });
+    </script>
+<body>
+    <div class="row">
+        <div class="col-lg-offset-3 col-md-6" style="margin-top:24px;">
+            <div class="card">
+                <div class="card-head">
+                    <ul class="nav nav-tabs nav-justified" data-toggle="tabs">
+                        <li class="active"><a href="#webapp" data-toggle="tab">Webapp</a></li>
+                        <li><a href="#api" data-toggle="tab">API</a></li>
+                    </ul>
+                </div>
+                <div class="card-body tab-content">
+                    <div class="tab-pane active" id="webapp">
+                        <form method=post enctype="multipart/form-data" class="form">
+                            <div class="card" style="border:0">
+                                <div class="card-head style-primary">
+                                    <header style="line-height: 34px;">{{name}}-v{{version}} Inference</header>
+                                </div>
+                                <div class="card-body" style="border:0">
+                                    {{ form.hidden_tag() }}
+                                    {% for field in form if field.widget.input_type != 'hidden' %}
+                                        <div class="form-group">
+                                            {{field(class_="form-control", required="required")}}
+                                            {{field.label}}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="card-actionbar">
+                                    <div class="card-actionbar-row" style="text-align:left;">
+                                        <button id="sub-btn" type="submit" class="btn btn-flat btn-primary ink-reaction" style="color: #0aa89e;">Submit</button>
+                                    </div>
+                                </div>
+                                <div id="result"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="api">
+                        <form method=post enctype="multipart/form-data" class="form">
+                            <div class="form-group">
+                                <pre name="api_url" id="api_url">{{api_url}}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

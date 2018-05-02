@@ -1,0 +1,187 @@
+/*
+ * Copyright (C) 2018 TypeFox and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+.theia-git {
+    color: var(--theia-ui-font-color1);
+    padding: 5px;
+    box-sizing: border-box;
+    background: var(--theia-layout-color3);
+    display: flex;
+    flex-direction: column;
+}
+
+.theia-git:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+#theia-gitContainer .flexcontainer {
+    display: flex;
+}
+
+#theia-gitContainer .row {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.theia-git .noWrapInfo {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.theia-git .space-between {
+    justify-content: space-between;
+}
+
+.theia-git .gitItem {
+    margin: 1px 0 1px 3px;
+    padding: 2px;
+    font-size: var(--theia-ui-font-size1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.theia-git .gitItem .file-icon {
+    display: initial;
+}
+
+.theia-git .gitItem:hover {
+    background-color: var(--theia-layout-color0);
+    cursor: pointer;
+}
+
+.theia-git .gitItem .path {
+    color: var(--theia-ui-font-color2);
+    font-size: var(--theia-ui-font-size0);
+    margin-left: 3px;
+}
+
+.theia-git .gitItem .itemButtonsContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 3px;
+}
+
+.theia-git .gitItem .status {
+    padding: 2px 4px;
+    font-size: var(--theia-ui-font-size0);
+}
+
+.theia-git .gitItem .status.new {
+    color: var(--theia-disabled-color0);
+}
+
+.theia-git .gitItem .status.new.staged {
+    color: var(--theia-success-color0);
+}
+
+.theia-git .gitItem .status.modified {
+    color: var(--theia-brand-color0);
+}
+
+.theia-git .gitItem .status.deleted {
+    color: var(--theia-warn-color0);
+}
+
+.theia-git .gitItem .status.renamed {
+    color: var(--theia-disabled-color0);
+}
+
+.theia-git .gitItem .status.conflicted {
+    color: var(--theia-error-color0);
+}
+
+.theia-git .gitItem .status.copied {
+    color: var(--theia-disabled-color0);
+}
+
+#theia-gitContainer .buttons {
+    display: flex;
+    margin-left: 5px;
+}
+
+#theia-gitContainer .buttons .toolbar-button {
+    margin: 0 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 3px;
+}
+
+#theia-gitContainer .buttons .toolbar-button:hover {
+    background: var(--theia-content-font-color3);
+}
+
+#theia-gitContainer .gitItem .itemButtonsContainer .buttons {
+    display: none;
+    margin: 0 3px;
+}
+
+#theia-gitContainer .gitItem:hover .itemButtonsContainer .buttons {
+    display: flex;
+}
+
+#theia-gitContainer .changesHeader {
+    font-weight: bold;
+}
+
+#theia-gitContainer .changesContainer {
+    margin: 5px 0;
+}
+
+#theia-gitContainer #messageInputContainer {
+    position: relative;
+}
+
+#theia-gitContainer #repositoryListContainer #repositoryList,
+#theia-gitContainer #messageInputContainer input,
+#theia-gitContainer #messageTextareaContainer textarea {
+    flex: 1;
+    line-height: var(--theia-content-line-height);
+    font-size: var(--theia-ui-font-size1);
+    padding-left: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--theia-border-color1);
+    background: var(--theia-layout-color0);
+    color: var(--theia-ui-font-color1);
+}
+
+#theia-gitContainer #repositoryListContainer {
+    display: flex;
+    margin-bottom: 5px;
+    flex: 1;
+}
+
+#theia-gitContainer #commandBar {
+    margin-bottom: 5px;
+    align-items: baseline;
+}
+
+#theia-gitContainer .changesOuterContainer {
+    overflow-y: auto;
+    padding-right: 5px;
+    flex-grow: 1;
+}
+
+#theia-gitContainer .warn {
+    background-color: var(--theia-error-color2) !important;
+}
+
+#theia-gitContainer .placeholder {
+    width: 100%;
+}
+
+.theia-git:focus .theia-mod-selected{
+    background: var(--theia-accent-color3);
+}
+
+.theia-git .theia-mod-selected{
+    background: var(--theia-accent-color5);
+}

@@ -1,0 +1,42 @@
+/*
+ * Copyright (C) 2017, 2018 TypeFox and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+.p-DockPanel.p-SplitPanel-child {
+  padding: 0px;
+}
+
+.p-DockPanel-widget {
+  background: var(--theia-layout-color3);
+  min-width: 100px;
+  min-height: 100px;
+}
+
+.p-DockPanel-handle[data-orientation='vertical'] {
+  min-height: var(--theia-border-width);
+  border-top: var(--theia-border-width) solid var(--theia-border-color1);
+}
+
+.p-DockPanel-handle[data-orientation='horizontal'] {
+  min-width: var(--theia-border-width);
+  border-left: var(--theia-border-width) solid var(--theia-border-color1);
+}
+
+.p-DockPanel-overlay {
+  background: rgba(33, 150, 243, 0.1);
+  border: var(--theia-border-width) dashed var(--theia-brand-color1);
+  transition-property: top, left, right, bottom;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+
+.p-DockPanel-overlay.p-mod-root-top,
+.p-DockPanel-overlay.p-mod-root-left,
+.p-DockPanel-overlay.p-mod-root-right,
+.p-DockPanel-overlay.p-mod-root-bottom,
+.p-DockPanel-overlay.p-mod-root-center {
+  border-width: 2px;
+}
